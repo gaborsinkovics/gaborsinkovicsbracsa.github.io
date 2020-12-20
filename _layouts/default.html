@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% assign header_border = "10%" %}
+{% assign body_border = "20%" %}
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+  <meta http-equiv="Content-Language" content="en" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+  <title>Website of Gábor Sinkovics</title>
+
+  <script src="/script/jquery-3.2.1.min.js"></script>
+  <script src="/script/js.cookie.js"></script>
+
+  <script type="text/javascript"><!--
+    {% include lang.js %}
+  --></script>
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css" />
+</head><body onload='select_lang(default_lang());'>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<tr>
+  <td width="{{ header_border }}">&nbsp;</td>
+  <td class="page_title_left">&nbsp;</td>
+  <td class="page_title">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" height="200px">
+    <tr><td class="page_title_label">
+      <span class='lang_hu' style='display: none;'>Sinkovics Gábor honlapja</span>
+      <span class='lang_de' style='display: none;'>Website von Gábor Sinkovics</span>
+      <span class='lang_en' style='display: inline-block;'><script type='text/javascript'>select_lang(default_lang());</script>Website of Gábor Sinkovics</span>
+    </td></tr>
+    <tr height="45px">
+      <td class="menu">
+        <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          {% for item in site.data.menu %}
+            {% if page.content_id == item.href %}
+              {% assign class = "menu_item_active" %}
+            {% else %}
+              {% assign class = "menu_item" %}
+            {% endif %}
+            <td class='{{ class }}'><a class='{{ class }}' href='{{ item.href }}'>{% for label in item.label %}<span class='lang_{{ label[0] }} menu_item' style='display: {% if label[0] == "en" %}inline-block{% else %}none{% endif %};'>{% if label[0] == "en" %}<script type='text/javascript'>select_lang(default_lang());</script>{% endif %}{{ label[1] }}</span>{% endfor %}</a></td>
+          {% endfor %}
+          <td width="100%">&nbsp;</td>
+
+          {% for item in site.data.lang %}
+            <td class='menu_item'><a id='lang_menu_{{ item.id }}' class='menu_item' onclick='select_lang("{{item.id}}");' style='cursor:pointer;'>{{ item.label }}</a></td>
+          {% endfor %}
+        </tr>
+        </table>
+      </td>
+    </tr>
+    </table>
+  </td>
+  <td class="page_title_right">&nbsp;</td>
+  <td width="{{ header_border }}">&nbsp;</td>
+</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<tr>
+  <td width="{{ body_border }}">&nbsp;</td>
+  <td>
+    <div id='content_hu' class='lang_hu' style='display: none;width: 100%;'>{% include content.html lang="hu" %}</div>
+    <div id='content_de' class='lang_de' style='display: none;width: 100%;'>{% include content.html lang="de" %}</div>
+    <div id='content_en' class='lang_en' style='display: inline-block;width: 100%;'><script type='text/javascript'>select_lang(default_lang());</script>{% include content.html lang="en" %}</div>
+  </td>
+  <td width="{{ body_border }}">&nbsp;</td>
+</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<tr>
+  <td width="{{ header_border }}">&nbsp;</td>
+  <td class="page_footer_left">&nbsp;</td>
+  <td class="page_footer">&nbsp;</td>
+  <td class="page_footer_right">&nbsp;</td>
+  <td width="{{ header_border }}">&nbsp;</td>
+</tr>
+</table>
+
+</body></html>
+
+

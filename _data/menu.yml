@@ -1,0 +1,12 @@
+- label:
+    hu: Nyitólap
+    de: Hauptseite
+    en: "Front&nbsp;page"
+  id: 0
+  href: index
+- label:
+    hu: Önéletrajz
+    de: Lebenslauf
+    en: "Curriculum&nbsp;Vitae"
+  id: 1
+  href: cv
